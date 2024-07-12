@@ -7,9 +7,11 @@
 #include <termios.h>
 #include <unistd.h>
 
-// ---------------------------
-// Draw Title
-// ---------------------------
+/*
+ * --------------------
+ * Draw Title
+ * --------------------
+ */
 void drawTitle() {
   system("clear");
   printf("\n\n");
@@ -26,9 +28,11 @@ void drawTitle() {
   printf("\t\t\n\n");
 }
 
-// ---------------------------
-// Set Noncanonical Mode
-// ---------------------------
+/*
+ * --------------------
+ * Set Noncanonical Mode
+ * --------------------
+ */
 void set_noncanonical_mode() {
   struct termios t;
   tcgetattr(STDIN_FILENO, &t);
@@ -36,9 +40,11 @@ void set_noncanonical_mode() {
   tcsetattr(STDIN_FILENO, TCSANOW, &t);
 }
 
-// ---------------------------
-// Draw Instructions
-// ---------------------------
+/*
+ * --------------------
+ * Draw Instructions
+ * --------------------
+ */
 void drawInstructions() {
   printf("\n\n");
   printf("\t\t\t\t n - New Game \n");
@@ -62,9 +68,11 @@ void drawInstructions() {
   }
 }
 
-// ---------------------------
-// Log In
-// ---------------------------
+/*
+ * --------------------
+ * Log In
+ * --------------------
+ */
 int login(sqlite3 *db, int *rc) {
   char username[100];
 
@@ -108,9 +116,11 @@ int login(sqlite3 *db, int *rc) {
   return 0;
 }
 
-// ---------------------------
-// Initialize Database
-// ---------------------------
+/*
+ * --------------------
+ * Initialize Database
+ * --------------------
+ */
 void initDB(sqlite3 *db) {
 
   int rc = sqlite3_open("database.db", &db);
@@ -128,6 +138,4 @@ void initDB(sqlite3 *db) {
   }
 
   int logged = login(db, &rc);
-
-  sqlite3_close(db);
 }
